@@ -1,0 +1,129 @@
+/* Admin Dashboard Custom Styles */
+
+/* Navigation item styles */
+.nav-item {
+  @apply flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 rounded-lg transition-colors duration-200;
+}
+
+.nav-item-active {
+  @apply bg-brand-primary/10 text-brand-primary dark:bg-brand-primary/20 dark:text-brand-light font-medium;
+}
+
+.nav-item-inactive {
+  @apply hover:bg-gray-100 dark:hover:bg-gray-800;
+}
+
+/* Card hover effects */
+.admin-card {
+  @apply transition-all duration-300;
+}
+
+.admin-card:hover {
+  @apply transform -translate-y-1 shadow-lg;
+}
+
+/* Stats counter animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-number {
+  animation: countUp 0.8s ease-out forwards;
+}
+
+/* Chart animations */
+@keyframes growBar {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.chart-bar {
+  animation: growBar 1s ease-out forwards;
+}
+
+@keyframes growWidth {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.chart-progress {
+  animation: growWidth 1s ease-out forwards;
+}
+
+/* Table row hover effect */
+.table-row {
+  @apply transition-colors duration-150;
+}
+
+.table-row:hover {
+  @apply bg-gray-50 dark:bg-gray-800/50;
+}
+
+/* Button animations */
+.pulse-button {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+/* Status indicators */
+.status-dot {
+  @apply h-2 w-2 rounded-full inline-block mr-2;
+}
+
+.status-active {
+  @apply bg-green-500;
+}
+
+.status-pending {
+  @apply bg-yellow-500;
+}
+
+.status-inactive {
+  @apply bg-red-500;
+}
+
+/* Custom scrollbar for tables */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800 rounded-full;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-600 rounded-full;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500 dark:bg-gray-500;
+} 

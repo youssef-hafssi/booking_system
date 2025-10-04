@@ -1,0 +1,60 @@
+{
+  "info": {
+    "_postman_id": "b5e7b5e7-b5e7-b5e7-b5e7-b5e7b5e7b5e7",
+    "name": "Workstation Reservation System API",
+    "description": "Collection for testing the Workstation Reservation System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Test Endpoints",
+      "item": [
+        {
+          "name": "Ping Test",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/test/ping",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "test",
+                "ping"
+              ]
+            },
+            "description": "Simple endpoint to check if the application is running."
+          },
+          "response": []
+        },
+        {
+          "name": "Database Connection Test",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/test/db-connection",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "test",
+                "db-connection"
+              ]
+            },
+            "description": "Endpoint to test the database connection."
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for testing the basic functionality of the application."
+    }
+  ]
+}

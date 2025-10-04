@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import admin styles */
+@import './styles/admin.css';
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%;
+    
+    /* Light theme default */
+    --background-primary: 0 0% 100%;
+    --background-secondary: 210 40% 96.1%;
+    --foreground-primary: 222.2 84% 4.9%;
+    --accent-primary: 47 95% 57%;
+    --accent-secondary: 256 51% 30%; /* #412977 in HSL */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    
+    /* Dark theme from design */
+    --background-primary: 0 0% 11%;
+    --background-secondary: 0 0% 15%;
+    --foreground-primary: 0 0% 98%;
+    --accent-primary: 47 95% 57%;
+    --accent-secondary: 256 51% 30%; /* #412977 in HSL */
+  }
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply bg-gray-50 text-gray-900 transition-colors duration-200;
+}
+
+body.dark {
+  @apply bg-dark-background text-white;
+}
+
+/* Add custom styling based on the design */
+.dark-mode-app {
+  @apply bg-[#1C1C1C] text-white min-h-screen;
+}
+
+.dark-sidebar {
+  @apply bg-[#121212] text-white rounded-xl;
+}
+
+.accent-yellow {
+  @apply bg-[#FFCB14] text-black font-medium;
+}
+
+.nav-item {
+  @apply flex items-center px-4 py-3 rounded-lg transition-colors;
+}
+
+.nav-item-active {
+  @apply bg-[#FFCB14] text-black font-medium;
+}
+
+.nav-item-inactive {
+  @apply text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-[#252525];
+}
+
+.card-dark {
+  @apply bg-[#252525] rounded-xl p-4 shadow-md;
+}
+
+.form-input {
+  @apply px-3 py-2 border rounded-lg focus:outline-none focus:ring-2;
+  @apply bg-white border-gray-300 text-gray-900 focus:ring-brand-primary;
+  @apply dark:bg-dark-background dark:border-gray-700 dark:text-white dark:focus:ring-accent-yellow;
+}
+
+.form-select {
+  @apply px-3 py-2 border rounded-lg focus:outline-none focus:ring-2;
+  @apply bg-white border-gray-300 text-gray-900 focus:ring-brand-primary;
+  @apply dark:bg-dark-background dark:border-gray-700 dark:text-white dark:focus:ring-accent-yellow;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-colors;
+}
+
+.btn-primary {
+  @apply bg-brand-primary text-white hover:bg-brand-hover;
+  @apply dark:bg-accent-yellow dark:text-black dark:hover:bg-yellow-400;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+  @apply dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700;
+}
+
+/* Fix input text color to ensure visibility */
+input, select, textarea {
+  @apply text-gray-900 dark:text-white;
+}
+
+/* Override for auth pages where white text on white backgrounds might be an issue */
+.bg-white input, 
+.bg-white select, 
+.bg-white textarea {
+  @apply text-gray-900;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} 

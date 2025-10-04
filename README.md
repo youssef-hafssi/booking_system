@@ -1,17 +1,69 @@
-# Projet de Gestion de Réservation de Postes de Travail
+# Booking System
 
-Ce projet vise à développer une application web pour la gestion des réservations de postes de travail.
+Projet de gestion de réservation de postes de travail  
+Backend (Spring Boot) + Frontend (React + Vite) + MySQL  
+Repository structuré en deux parties : `backend` et `frontend`.  
 
-## Stack Technique
-- Backend: Spring Boot
-- Frontend: React Vite
-- Base de données: MySQL
+---
 
-## Structure du Projet
+## Table des matières
 
-```
-/p
-  ├── backend         // Contient le code source du backend Spring Boot
-  ├── frontend        // Contient le code source du frontend React Vite
-  └── README.md
-```
+1. [Fonctionnalités](#fonctionnalités)  
+2. [Architecture & Technologies](#architecture--technologies)  
+3. [Installation & Configuration](#installation--configuration)  
+4. [Démarrage](#démarrage)  
+5. [Usage](#usage)  
+6. [Tests](#tests)  
+7. [Structure du projet](#structure-du-projet)  
+8. [Contribuer](#contribuer)  
+9. [Licence](#licence)  
+
+---
+
+## Fonctionnalités
+
+Voici quelques-unes des fonctionnalités attendues / déjà implémentées :
+
+- Gestion des utilisateurs (inscription, authentification)  
+- Gestion des postes de travail (création, modification, suppression)  
+- Consultation des disponibilités  
+- Réservation de poste de travail  
+- Annulation et gestion des réservations  
+- Notification / email (selon configuration)  
+- Interface utilisateur responsive  
+- Sécurité (authentification, autorisations)  
+
+Vous pouvez ajouter ou retirer selon l’état réel de votre projet.
+
+---
+
+## Architecture & Technologies
+
+- **Backend** : Spring Boot (Java)  
+- **Frontend** : React + Vite  
+- **Base de données** : MySQL  
+- **Outils additionnels** : (ex : JPA / Hibernate, Spring Security, Axios dans le frontend, etc.)  
+
+L’architecture proposée est de type multi-couches (contrôleurs, services, repositories) pour une séparation des responsabilités.
+
+Vous trouverez aussi une image d’architecture (ex. `ARCHITECTURE_LOGICIELLE.png`) dans le repo.
+
+---
+
+## Installation & Configuration
+
+### Prérequis
+
+- Java JDK (version 11+ ou celle que vous utilisez)  
+- Node.js / npm (ou yarn)  
+- MySQL  
+- (Optionnel) un outil pour envoyer des emails (SMTP)  
+- (Optionnel) Postman pour l’API  
+
+### Étapes
+
+1. **Cloner le dépôt**
+
+   ```bash
+   git clone https://github.com/youssef-hafssi/booking_system.git
+   cd booking_system

@@ -1,180 +1,111 @@
 # Booking System
 
-Projet de gestion de réservation de postes de travail  
-Backend (Spring Boot) + Frontend (React + Vite) + MySQL  
-Repository structuré en deux parties : `backend` et `frontend`.  
+A web application to manage workstation / desk bookings (gestion de réservation de postes de travail).
+
+## Table of Contents
+
+- [About](#about)  
+- [Technologies](#technologies)  
+- [Architecture & Structure](#architecture--structure)  
+- [Getting Started](#getting-started)  
+  - [Prerequisites](#prerequisites)  
+  - [Environment Setup](#environment-setup)  
+  - [Database Setup & Migrations](#database-setup--migrations)  
+  - [Running Locally](#running-locally)  
+- [Usage](#usage)  
+  - [API Endpoints](#api-endpoints)  
+  - [Frontend Routes / Views](#frontend-routes--views)  
+- [Testing](#testing)  
+- [Project Roadmap / TODOs](#project-roadmap--todos)  
+- [Contributing](#contributing)  
+- [License](#license)  
 
 ---
 
-## Table des matières
+## About
 
-1. [Fonctionnalités](#fonctionnalités)  
-2. [Architecture & Technologies](#architecture--technologies)  
-3. [Installation & Configuration](#installation--configuration)  
-4. [Démarrage](#démarrage)  
-5. [Usage](#usage)  
-6. [Tests](#tests)  
-7. [Structure du projet](#structure-du-projet)  
-8. [Contribuer](#contribuer)  
-9. [Licence](#licence)  
+This is a full-stack web application for managing reservations of workstations or desks. Users can make, cancel, or view bookings; administrators can manage availability, users, and view occupancy statistics.
+
+The project is composed of a **Spring Boot** backend and a **React / Vite** frontend, with **MySQL** as the database.
 
 ---
 
-## Fonctionnalités
+## Technologies
 
-Voici quelques-unes des fonctionnalités attendues / déjà implémentées :
-
-- Gestion des utilisateurs (inscription, authentification)  
-- Gestion des postes de travail (création, modification, suppression)  
-- Consultation des disponibilités  
-- Réservation de poste de travail  
-- Annulation et gestion des réservations  
-- Notification / email (selon configuration)  
-- Interface utilisateur responsive  
-- Sécurité (authentification, autorisations)  
-
-Vous pouvez ajouter ou retirer selon l’état réel de votre projet.
+- **Backend**: Spring Boot (Java)  
+- **Frontend**: React (with Vite)  
+- **Database**: MySQL  
+- **Other**:  
+  - JPA / Hibernate (for ORM)  
+  - RESTful API design  
+  - Axios or Fetch on frontend for HTTP  
+  - PCORS, JWT / session-based auth 
 
 ---
 
-## Architecture & Technologies
+## Architecture & Structure
+booking_system/
+├── backend # Spring Boot backend project
+├── frontend # React / Vite frontend project
+├── tools # Optional utility scripts/tools
+├── ARCHITECTURE_MVC.png (or .svg / .jpg)
+├── DATABASE_MODEL.md
+├── EMAIL_SETUP_GUIDE.md
+├── TEST_INSTRUCTIONS.md
+└── README.md ← (this file)
 
-- **Backend** : Spring Boot (Java)  
-- **Frontend** : React + Vite  
-- **Base de données** : MySQL  
-- **Outils additionnels** : (ex : JPA / Hibernate, Spring Security, Axios dans le frontend, etc.)  
 
-L’architecture proposée est de type multi-couches (contrôleurs, services, repositories) pour une séparation des responsabilités.
-
-Vous trouverez aussi une image d’architecture (ex. `ARCHITECTURE_LOGICIELLE.png`) dans le repo.
+- The backend handles business logic, data persistence, and exposes REST APIs.
+- The frontend consumes those APIs and renders UI for users and admins.
+- The `tools` folder may contain scripts (e.g. seeding, helpers).
+- Supporting documentation (architecture diagram, database schema, email setup) is included in separate markdown or image files.
 
 ---
 
-## Installation & Configuration
+## Getting Started
 
-### Prérequis
+### Prerequisites
 
-- Java JDK (version 11+ ou celle que vous utilisez)  
-- Node.js / npm (ou yarn)  
-- MySQL  
-- (Optionnel) un outil pour envoyer des emails (SMTP)  
-- (Optionnel) Postman pour l’API  
+Make sure you have installed:
 
-### Étapes
+- Java (JDK 11 or later recommended)  
+- Maven or Gradle (depending on your backend build tool)  
+- Node.js & npm (or yarn)  
+- MySQL (or a compatible relational DB)  
 
-1. **Cloner le dépôt**
+### Environment Setup
 
-   ```bash
-   git clone https://github.com/youssef-hafssi/booking_system.git
-   cd booking_system
+You might need environment variables or property files like:
 
-   Configurer la base de données
+| Key | Description | Example |
+|-----|-------------|---------|
+| `DB_HOST` | IP / hostname of MySQL server | `localhost` |
+| `DB_PORT` | MySQL port | `3306` |
+| `DB_NAME` | Database name | `booking_db` |
+| `DB_USER` | DB username | `user` |
+| `DB_PASS` | DB password | `password` |
+| `JWT_SECRET` | Secret key for JWT (if used) | `someVerySecretKey` |
+| `FRONTEND_URL` | URL that frontend runs on (for CORS) | `http://localhost:3000` |
 
-Créez une base MySQL (ex : booking_db)
+In Spring Boot, you can set them in `application.properties` or `application.yml` or via environment variables.
 
-Notez les informations : host, port, utilisateur, mot de passe
+### Database Setup & Migrations
 
-Modifiez les fichiers de configuration du backend pour pointer vers cette base (application.properties / application.yml)
+1. Create the database schema (e.g. `booking_db`) in MySQL.  
+2. Use JPA / Hibernate auto DDL or run SQL / migration scripts to create tables.  
+3. (Optional) Seed initial data (users, days, workstations) — you can include a SQL seed file or script in `tools/`.
 
-Configurer les variables d’environnement / secrets
+### Running Locally
 
-Exemple (backend) :
+**Backend**  
+```bash
+cd backend
+./mvnw spring-boot:run  
+# or if using Gradle: ./gradlew bootRun
 
-SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/booking_db
-SPRING_DATASOURCE_USERNAME=your_username
-SPRING_DATASOURCE_PASSWORD=your_password
-JWT_SECRET=une_clé_secrète_pour_tokénisation
-EMAIL_HOST=smtp.exemple.com
-EMAIL_PORT=587
-EMAIL_USERNAME=...
-EMAIL_PASSWORD=...
-
-
-(Ajustez selon vos besoins)
-
-Installer les dépendances frontend
-
+**Frontend** 
 cd frontend
 npm install
-
-
-(ou yarn selon le gestionnaire)
-
-Démarrage
-Backend
-cd backend
-./mvnw spring-boot:run
-
-
-ou si vous utilisez Gradle / wrapper :
-
-./gradlew bootRun
-
-Frontend
-cd frontend
 npm run dev
 
 
-Cela lancera le serveur de développement React + Vite (généralement sur http://localhost:3000 ou un port similaire).
-
-Usage
-
-Ouvrez votre navigateur à l’adresse du frontend (ex : http://localhost:3000)
-
-Créez un compte / connectez-vous
-
-Naviguez vers la section des postes de travail — voir les disponibilités
-
-Faites une réservation
-
-Gérez / annulez vos réservations
-
-Vous pouvez tester les endpoints backend via Postman en important le fichier postman_collection.json fourni.
-
-Tests
-
-Si vous avez des tests (unitaires, d’intégration) :
-
-Backend :
-
-cd backend
-./mvnw test
-
-
-ou équivalent Gradle.
-
-Frontend :
-(Selon la configuration — ex : npm test ou yarn test)
-
-Vous pouvez aussi avoir des scénarios de tests manuels décrits dans test_instructions.md.
-
-Structure du projet
-booking_system/
-│
-├── backend/             # code source Java / Spring Boot
-├── frontend/            # code React / Vite
-├── ARCHITECTURE_LOGICIELLE.*   # schémas d’architecture
-├── postman_collection.json
-├── test_instructions.md
-└── README.md            # (vous êtes ici)
-
-
-Vous pouvez avoir d’autres fichiers comme des guides (ex : EMAIL_SETUP_GUIDE.md, TIMEZONE_CONFIGURATION.md, etc.)
-
-Contribuer
-
-Les contributions sont les bienvenues ! Voici quelques étapes simples :
-
-Fork du projet
-
-Créer une branche : git checkout -b feature/ma-nouvelle-fonctionnalité
-
-Faire vos modifications / ajouts
-
-Ajouter des tests, documenter
-
-Commit / push
-
-Ouvrir une Pull Request
-
-Merci de respecter le style de code existant, de documenter et de tester vos modifications.
